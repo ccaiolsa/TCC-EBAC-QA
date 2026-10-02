@@ -2,18 +2,11 @@ const joi = require('joi')
 
 const userSchema = joi.object({
 
-    id: joi.number().integer(),
-    name: joi.string(),
-    email: joi.string(),
-    isAdmin: joi.string()
+    id: joi.number().integer().required(),
+    name: joi.string().required(),
+    email: joi.string().required(),
+    isAdmin: joi.boolean().required()
 
-});
+}).unknown(true);
 
-const {error, value} = userSchema.validate({
-    id: 2,
-    name: 'Admin',
-    email: 'admin@biblioteca.com',
-    isAdmin: true
-})
-
-module.exports = {userSchema}
+module.exports = userSchema

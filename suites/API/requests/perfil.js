@@ -2,8 +2,8 @@ const http = require('supertest');
 const user = require('./user.js')
 const request = http('http://localhost:3000')
 
-const emailAdmin = process.env.EMAIL_API;
-const senhaAdmin = process.env.SENHA_API;
+const emailAdmin = process.env.EMAIL_ADM;
+const senhaAdmin = process.env.SENHA_ADM;
 
 let token
 

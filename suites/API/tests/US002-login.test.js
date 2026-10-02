@@ -1,20 +1,23 @@
 const user = require('../requests/user.js')
 const userSchema = require('../schema/schema_US002-login.js')
 
-const email = process.env.EMAIL_API;
-const senha = process.env.SENHA_API;
+const email = process.env.EMAIL_ADM;
+const senha = process.env.SENHA_ADM;
 
 describe('US002 - Funcionalidade Login', () => {
     it('CT01 - Realizar login com sucesso', async () => {
         await user.loginAdm(email, senha).then((resp) => {
             expect(resp.status).toEqual(200)
-            expect(resp.body)
+            expect(resp.body.email).toEqual(email)
+            expect(resp.body.name).toBeDefined()
+
+            // Validação de contrato
+            const resultado = userSchema.validate(resp.body, {abortEarly: false})
+            expect(resultado.error).toBeUndefined()
 
         })
 
-        // Validação de contrato
-        const { error } = await userSchema
-        await expect(error).toBeUndefined()
+        
     });
 
     it('CT02 - Tentar realizar login com email inválido', async () => {

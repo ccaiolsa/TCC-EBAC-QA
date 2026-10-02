@@ -1,7 +1,7 @@
 import { describe, expect } from 'https://jslib.k6.io/k6chaijs/4.5.0.1/index.js';
 import http from 'k6/http';
-const email = __ENV.EMAIL_API;
-const senha = __ENV.SENHA_API;
+const email = __ENV.EMAIL_ADM;
+const senha = __ENV.SENHA_ADM;
 
 export const options = {
     stages: [

@@ -16,14 +16,8 @@ class Pedido {
                     "bookId": produtoId
                 }
             )
-        if(response.status !== 201 ){
-            console.log('Erro no Login', response.status)
-            return null
-        }else{
-            console.log('Login realizado com sucesso', response.status)
-            return response
-
-        }
+        console.log('RESPOSTA DA RESERVA', response.body)
+        return response
     }
 
     async retirarReserva(email, senha, reservaId) {
@@ -47,7 +41,8 @@ class Pedido {
                     action: `update_notes`
                 }
             )
-            return response
+        console.log('RESPOSTA ATUALIZAR RESERVA', response.body)
+        return response
     }
 }
 

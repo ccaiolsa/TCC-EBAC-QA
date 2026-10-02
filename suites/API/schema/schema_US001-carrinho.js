@@ -1,19 +1,13 @@
 const joi = require('joi')
 
+
 const carrinhoSchema = joi.object({
 
-    message: joi.string(),
-    itemId: joi.number().integer(),
-    bookTitle: joi.string(),
-    bookAuthor: joi.string(),
-    addedDate: joi.date()
-})
-const {error, value} = carrinhoSchema.validate({
-    message: 'Livro adicionado ao carrinho com sucesso.',
-    itemId: 4,
-    bookTitle: 'Dom Casmurro',
-    bookAuthor: 'Machado de Assis',
-    addedDate: '2026-09-13T14:59:45.308Z'
-})
+    message: joi.string().required(),
+    itemId: joi.number().integer().required(),
+    bookTitle: joi.string().required(),
+    bookAuthor: joi.string().required(),
+    addedDate: joi.date().required()
+}).unknown(true);
 
-module.exports = {carrinhoSchema}
+module.exports = carrinhoSchema

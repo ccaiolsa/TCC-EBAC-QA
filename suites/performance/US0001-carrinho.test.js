@@ -3,8 +3,8 @@ import http from 'k6/http';
 import { check } from 'k6';
 import { loginAdm } from './requests/login.js';
 import { Cesta } from './requests/cesta.js';
-const email = __ENV.EMAIL_API;
-const senha = __ENV.SENHA_API;
+const email = __ENV.EMAIL_ADM;
+const senha = __ENV.SENHA_ADM;
 const reserva = new Cesta()
 
 export const options = {
@@ -32,9 +32,8 @@ export default () => {
             "quantity": 1
         }
     );
-    const id = reserva.primeiroProduto(token)
-    const deletar = reserva.limparCesta(token)
     const resp = http.post(url, payload, params)
+    const deletar = reserva.limparCesta(token)
 
     describe('CT01 - Adicionar produto no carrinho com sucesso', () => {
         console.log('STATUS: ', resp.status)

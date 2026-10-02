@@ -2,28 +2,16 @@ const joi = require('joi')
 
 const detalheSchema = joi.object(
     {
-        message: joi.string(),
+        message: joi.string().required(),
         user: joi.object({
-            id: joi.number().integer(),
-            name: joi.string(),
-            email: joi.string(),
-            isAdmin: joi.boolean(),
-            updated_at: joi.date()
+            id: joi.number().integer().required(),
+            name: joi.string().required(),
+            email: joi.string().required(),
+            isAdmin: joi.number().integer().required(),
+            updated_at: joi.date().required()
         })
     }
-)
-const { error, value } = detalheSchema.validate(
-    {
-        message: "Usuário atualizado com sucesso.",
-        user: {
-            id: 2,
-            name: "João da Silva Santos",
-            email: "joao.novo@email.com",
-            isAdmin: false,
-            updated_at: "2026-09-13T18:11:18.419Z"
-        }
-    }
-)
+).unknown(true)
 
-module.exports = { detalheSchema }
+module.exports = detalheSchema 
 
